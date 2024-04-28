@@ -1,19 +1,35 @@
-import { useState } from "react";
 import "./App.css";
 import Layout from "./components/Layout";
 import { Provider } from "react-redux";
 import store from "./store";
 import Home from "./components/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Box } from "@mui/material";
+import NewContactForm from "./components/NewContactForm";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <Layout>
-      <Provider store={store}>
-        <Home />
-      </Provider>
-    </Layout>
+    <BrowserRouter>
+      <Layout>
+        <Provider store={store}>
+          <Box
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "50vh",
+            }}
+          >
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/contact:contactId" element={<Home />} />
+              <Route path="/contact:contactId/edit" element={<Home />} />
+              <Route path="/contact/new" element={<NewContactForm />} />
+            </Routes>
+          </Box>
+        </Provider>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
