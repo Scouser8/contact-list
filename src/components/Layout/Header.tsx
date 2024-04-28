@@ -8,7 +8,7 @@ function Header() {
         src={logo}
         className="App-logo"
         alt="logo"
-        style={{ maxHeight: 70, objectFit: "contain" }}
+        style={{ maxHeight: 60, objectFit: "contain" }}
       />
       <Autocomplete
         sx={{ width: 300 }}

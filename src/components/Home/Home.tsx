@@ -25,7 +25,13 @@ const Home = () => {
       });
   }, []);
 
-  return !isLoading ? <ContactsList /> : <Loader />;
+  return !isLoading ? (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <ContactsList />
+    </div>
+  ) : (
+    <Loader />
+  );
 };
 
 export default Home;

@@ -1,5 +1,5 @@
 const headerStyles = {
-  height: 90,
+  height: 80,
   px: 5,
   py: 2,
   mb: 2,
