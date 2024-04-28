@@ -4,7 +4,12 @@ import logo from "/vodafone_logo.svg";
 function Header() {
   return (
     <Box sx={headerStyles}>
-      <img src={logo} className="App-logo" alt="logo" style={{ height: 50 }} />
+      <img
+        src={logo}
+        className="App-logo"
+        alt="logo"
+        style={{ maxHeight: 70, objectFit: "contain" }}
+      />
       <Autocomplete
         sx={{ width: 300 }}
         freeSolo

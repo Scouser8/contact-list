@@ -7,13 +7,17 @@ import {
 import axios from "../../axios";
 import { User } from "../types";
 
+export type GetUsersQuery = { numberOfUsers: number; nationality: string };
+
 export const getUsers = createAsyncThunk(
   "users/get",
-  async (numberOfUsers: number = 5, thunkAPI) => {
+  async ({ numberOfUsers = 5, nationality }: GetUsersQuery, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await axios.get(`/?results=${numberOfUsers}`);
-      return res.data;
+      const res = await axios.get(
+        `/?results=${numberOfUsers}&nat=${nationality}`
+      );
+      return res.data.results;
     } catch (res: any) {
       return rejectWithValue(res.error);
     }

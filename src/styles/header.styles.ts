@@ -1,8 +1,8 @@
 const headerStyles = {
-  height: 60,
+  height: 90,
   px: 5,
   py: 2,
-  // backgroundColor: "#99cfe0",
+  mb: 2,
   textAlign: "center",
   position: "sticky",
   top: 0,
