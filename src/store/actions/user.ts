@@ -1,17 +1,22 @@
-const ADD_USER = "user/add";
-const EDIT_USER = "user/edit";
-const DELETE_USER = "user/delete";
+import { Contact } from "../../types";
 
-const addUser = () => ({
+const ADD_USER = "users/add";
+const EDIT_USER = "users/edit";
+const DELETE_USER = "users/delete";
+
+const addUser = (newContact: Contact) => ({
   type: ADD_USER,
+  payload: newContact,
 });
 
-const editUser = () => ({
+const editUser = (contact: Contact) => ({
   type: EDIT_USER,
+  payload: contact,
 });
 
-const deleteUser = () => ({
+const deleteUser = (contactId: string) => ({
   type: DELETE_USER,
+  payload: contactId,
 });
 
 export { addUser, editUser, deleteUser };

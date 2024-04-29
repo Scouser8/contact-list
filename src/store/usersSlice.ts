@@ -5,7 +5,7 @@ import {
   createSlice,
 } from "@reduxjs/toolkit";
 import axios from "../../axios";
-import { User } from "../types";
+import { Contact } from "../types";
 
 export type GetUsersQuery = { numberOfUsers: number; nationality: string };
 
@@ -25,7 +25,7 @@ export const getUsers = createAsyncThunk(
 );
 
 type UsersState = {
-  users: User[];
+  users: Contact[];
   error: string;
 };
 
@@ -38,10 +38,10 @@ const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    addUser: (state, action: PayloadAction<User>) => {
+    add: (state, action: PayloadAction<Contact>) => {
       state.users.push(action.payload);
     },
-    editUser: (state, action: PayloadAction<User>) => {
+    edit: (state, action: PayloadAction<Contact>) => {
       const updatedUser = action.payload;
       state.users = state.users.map((user) => {
         if (user.login.uuid === updatedUser.login.uuid) {
@@ -50,7 +50,7 @@ const userSlice = createSlice({
         return user;
       });
     },
-    deleteUser: (state, action: PayloadAction<string>) => {
+    delete: (state, action: PayloadAction<string>) => {
       const userIdToDelete = action.payload;
       state.users = state.users.filter(
         (user) => user.login.uuid !== userIdToDelete

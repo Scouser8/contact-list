@@ -14,7 +14,7 @@ const ContactsList = () => {
       ) : (
         <Grid container sx={{ display: "flex" }} spacing={3}>
           {users.map((user) => (
-            <Grid item xs={12} md={6} lg={4}>
+            <Grid item xs={12} md={6} lg={4} key={user.login.uuid}>
               <ContactCard user={user} />
             </Grid>
           ))}

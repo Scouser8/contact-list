@@ -4,7 +4,7 @@ export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
 
-type UserName = { title: string; first: string; last: string };
+type UserName = { title?: string; first: string; last: string };
 type StreetAddress = { number: number; name: string };
 type UserAddress = {
   street: StreetAddress;
@@ -16,7 +16,7 @@ type UserAddress = {
 type UserPicture = { large: string; medium: string; thumbnail: string };
 type UserLoginInfo = { uuid: string };
 
-export type User = {
+export type Contact = {
   gender: string;
   name: UserName;
   location?: UserAddress;
@@ -27,4 +27,11 @@ export type User = {
   picture: UserPicture;
   nat: string;
   login: UserLoginInfo;
+};
+
+export type Field = {
+  label: string;
+  name: string;
+  placeholder: string;
+  id?: string;
 };

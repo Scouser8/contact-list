@@ -1,9 +1,9 @@
 import { Box, Card, Typography } from "@mui/material";
-import { User } from "../../types";
+import { Contact } from "../../types";
 import contactCardStyles from "../../styles/contactCard.styles";
 
 type Props = {
-  user: User;
+  user: Contact;
 };
 
 const ContactCard = (props: Props) => {
@@ -18,7 +18,7 @@ const ContactCard = (props: Props) => {
   const userName = `${last}, ${first}`;
   return (
     <Card sx={contactCardStyles}>
-      <img src={picture.medium} alt="user-image" />
+      <img src={picture?.medium} alt="user-image" />
       <Box className="userDetails">
         <Typography className="userName">{userName}</Typography>
         <Typography className="userInfo">{email}</Typography>
