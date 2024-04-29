@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
 import NewContactForm from "./components/NewContactForm";
+import ContactProfile from "./components/ContactProfile";
 
 function App() {
   return (
@@ -16,13 +17,12 @@ function App() {
             style={{
               display: "flex",
               justifyContent: "center",
-              alignItems: "center",
               minHeight: "50vh",
             }}
           >
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/contact:contactId" element={<Home />} />
+              <Route path="/contact/:contactId" element={<ContactProfile />} />
               <Route path="/contact:contactId/edit" element={<Home />} />
               <Route path="/contact/new" element={<NewContactForm />} />
             </Routes>
