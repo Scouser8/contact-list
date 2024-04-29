@@ -9,6 +9,7 @@ const headerStyles = {
   zIndex: 99,
   display: "flex",
   justifyContent: "space-around",
+  background: "inherit",
 };
 
 export default headerStyles;

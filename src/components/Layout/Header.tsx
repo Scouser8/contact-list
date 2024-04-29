@@ -11,7 +11,12 @@ function Header() {
         style={{ maxHeight: 60, objectFit: "contain" }}
       />
       <Autocomplete
-        sx={{ width: 300 }}
+        sx={(theme) => ({
+          width: 300,
+          [theme.breakpoints.down("sm")]: {
+            width: 200,
+          },
+        })}
         freeSolo
         id="free-solo-2-demo"
         disableClearable
