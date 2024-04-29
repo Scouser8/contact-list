@@ -8,6 +8,7 @@ import { Box } from "@mui/material";
 import NewContactForm from "./components/NewContactForm";
 import ContactProfile from "./components/ContactProfile";
 import ContactEditForm from "./components/ContactEditForm";
+import Error404 from "./components/Error404";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                 element={<ContactEditForm />}
               />
               <Route path="/contact/new" element={<NewContactForm />} />
+              <Route path="*" element={<Error404 />} />
             </Routes>
           </Box>
         </Provider>
