@@ -1,6 +1,6 @@
 import { object, string } from "yup";
 
-const NewContactSchema = object({
+const EditContactSchema = object({
   firstName: string()
     .required()
     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed"),
@@ -9,7 +9,6 @@ const NewContactSchema = object({
     .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed"),
   email: string().email().required(),
   phone: string().required(),
-  address: string().required(),
 });
 
-export default NewContactSchema;
+export default EditContactSchema;

@@ -2,46 +2,54 @@ import { Box, Button } from "@mui/material";
 import PageWrapperWithTitle from "../PageWrapperWithTitle";
 import { useFormik } from "formik";
 import FieldsBuilder from "../FieldsBuilder";
-import { AppDispatch, Field } from "../../types";
-import { useDispatch } from "react-redux";
-import { addUser } from "../../store/actions/user";
+import { AppDispatch, Field, RootState } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { editUser } from "../../store/actions/user";
 
-import { v4 as uuidv4 } from "uuid";
-import { useNavigate } from "react-router-dom";
-import NewContactSchema from "../../utils/forms/NewContactSchema";
+import { useNavigate, useParams } from "react-router-dom";
+import EditContactSchema from "../../utils/forms/EditContactSchema";
 
 type NewContact = {
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
-  address: string;
 };
 
-const initialValues: NewContact = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  address: "",
-};
-
-const NewContactForm = () => {
+const ContactEditForm = () => {
+  const { users } = useSelector((state: RootState) => state.users);
   const dispatch = useDispatch<AppDispatch>();
+  const { contactId } = useParams();
   const navigate = useNavigate();
+
+  const currentUser = users.find((user) => user.login.uuid === contactId);
+  if (!currentUser) {
+    navigate("/");
+    return;
+  }
+  const { name, email, phone } = currentUser;
+  const { first, last } = name;
+
+  const userName = `${first}, ${last}`;
+
+  const initialValues: NewContact = {
+    firstName: first,
+    lastName: last,
+    email,
+    phone,
+  };
 
   const formik = useFormik({
     initialValues,
-    validationSchema: NewContactSchema,
+    validationSchema: EditContactSchema,
     onSubmit: (values) => {
-      const newId = uuidv4();
       const newUser = {
+        ...currentUser,
         ...values,
         name: { first: values.firstName, last: values.lastName },
-        login: { uuid: newId },
       };
 
-      dispatch(addUser(newUser as any));
+      dispatch(editUser(newUser as any));
       navigate("/");
     },
   });
@@ -51,13 +59,12 @@ const NewContactForm = () => {
     { label: "Last Name", placeholder: "Enter Last Name", name: "lastName" },
     { label: "E-mail", placeholder: "Enter Email", name: "email" },
     { label: "Phone", placeholder: "Enter Phone", name: "phone" },
-    { label: "Address", placeholder: "Enter Address", name: "address" },
   ];
   return (
-    <PageWrapperWithTitle title="Add New Contact">
-      <form style={{ width: "100%" }} onSubmit={formik.handleSubmit}>
+    <PageWrapperWithTitle title={`${userName} Profile`}>
+      <form style={{ width: "50%" }} onSubmit={formik.handleSubmit}>
         <FieldsBuilder fields={fields} formikHelpers={formik} />
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
           <Button
             type="submit"
             variant="contained"
@@ -68,7 +75,7 @@ const NewContactForm = () => {
               "&:hover": { background: "lightGrey" },
             }}
           >
-            Add Contact
+            Save Contact
           </Button>
         </Box>
       </form>
@@ -76,4 +83,4 @@ const NewContactForm = () => {
   );
 };
 
-export default NewContactForm;
+export default ContactEditForm;

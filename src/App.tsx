@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
 import NewContactForm from "./components/NewContactForm";
 import ContactProfile from "./components/ContactProfile";
+import ContactEditForm from "./components/ContactEditForm";
 
 function App() {
   return (
@@ -23,7 +24,10 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/contact/:contactId" element={<ContactProfile />} />
-              <Route path="/contact:contactId/edit" element={<Home />} />
+              <Route
+                path="/contact/:contactId/edit"
+                element={<ContactEditForm />}
+              />
               <Route path="/contact/new" element={<NewContactForm />} />
             </Routes>
           </Box>
