@@ -4,6 +4,7 @@ const contactCardStyles = {
   display: "flex",
   width: 280,
   gap: 1,
+  cursor: "pointer",
   ".userDetails": { display: "flex", flexDirection: "column", gap: 1 },
   ".userNamer": { fontWeight: "bold" },
   ".userInfo": { fontSize: 11, color: "gray" },

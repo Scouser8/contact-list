@@ -1,22 +1,14 @@
-import { Container, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { RootState } from "../../types";
 import { useSelector } from "react-redux";
 import ContactCard from "./ContactCard";
+import PageWrapperWithTitle from "../PageWrapperWithTitle";
 
 const ContactsList = () => {
   const { users, error } = useSelector((state: RootState) => state.users);
 
   return (
-    <Container
-      sx={{
-        width: "70%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 4,
-      }}
-    >
-      <Typography variant="h5">Contancts</Typography>
+    <PageWrapperWithTitle title="Contancts">
       {error ? (
         <Typography>{error}</Typography>
       ) : (
@@ -28,7 +20,7 @@ const ContactsList = () => {
           ))}
         </Grid>
       )}
-    </Container>
+    </PageWrapperWithTitle>
   );
 };
 

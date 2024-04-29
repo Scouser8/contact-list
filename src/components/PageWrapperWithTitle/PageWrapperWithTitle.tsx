@@ -1,11 +1,12 @@
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 
 type Props = {
+  title: string;
   children: React.ReactNode;
 };
 
 const PageWrapperWithTitle = (props: Props) => {
-  const { children } = props;
+  const { title, children } = props;
   return (
     <Container
       sx={{
@@ -16,6 +17,7 @@ const PageWrapperWithTitle = (props: Props) => {
         gap: 3,
       }}
     >
+      <Typography variant="h5">{title}</Typography>
       {children}
     </Container>
   );

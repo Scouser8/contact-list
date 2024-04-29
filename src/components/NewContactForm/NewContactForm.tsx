@@ -1,10 +1,9 @@
-import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
+import { Box, Button, InputLabel, TextField } from "@mui/material";
 import PageWrapperWithTitle from "../PageWrapperWithTitle";
 
 const NewContactForm = () => {
   return (
-    <PageWrapperWithTitle>
-      <Typography variant="h5">Add New Contanct</Typography>
+    <PageWrapperWithTitle title="Add New Contact">
       <form style={{ width: "100%" }}>
         <InputLabel size="normal">First Name</InputLabel>
         <TextField
